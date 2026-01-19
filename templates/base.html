@@ -1,0 +1,29 @@
+{% load django_bootstrap5 %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Link Shortener{% endblock %}</title>
+    {% bootstrap_css %}
+</head>
+<body class="bg-light">
+
+<header class="border-bottom bg-white">
+    <div class="container py-3">
+        <h1 class="h4 mb-0">{% block header_title %}Link Shortener{% endblock %}</h1>
+    </div>
+</header>
+
+<main class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</main>
+
+{% bootstrap_javascript %}
+</body>
+</html>

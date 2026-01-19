@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-1">{{ code }}</h1>
+    <h2>Error</h2>
+    <p>{{ message }}</p>
+    <a href="{% url 'link_shortener:create_short_link' %}" class="btn btn-primary">Create a New Short Link</a>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Create Short Link - Link Shortener{% endblock %}
+{% block header_title %}Create Short Link{% endblock %}
+
+{% block content %}
+<h2>Create your short link</h2>
+{% bootstrap_messages %}
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% bootstrap_button button_type="submit" content="Create Short Link" %}
+</form>
+{% endblock %}

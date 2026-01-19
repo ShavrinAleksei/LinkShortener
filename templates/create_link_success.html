@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Link Created - Link Shortener{% endblock %}
+{% block header_title %}Link Created Successfully{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Your short link is ready!</h5>
+        <p class="card-text">Here's your shortened URL:</p>
+        
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" value="{{ short_url }}" readonly>
+            <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard(this)">Copy</button>
+        </div>
+        
+        <p class="card-text">
+            <strong>Original URL:</strong> {{ short_link.url }}<br>
+            <strong>Alias:</strong> {{ short_link.alias }}<br>
+            <strong>Created:</strong> {{ short_link.created_at|date:"M d, Y H:i" }}
+        </p>
+        
+        <a href="{% url 'link_shortener:create_short_link' %}" class="btn btn-primary">Create Another Link</a>
+        <a href="{{ short_url }}" class="btn btn-outline-primary" target="_blank">Test Link</a>
+    </div>
+</div>
+
+<script>
+function copyToClipboard(button) {
+    var input = button.previousElementSibling;
+    navigator.clipboard.writeText(input.value)
+        .then(() => {
+            var originalText = button.textContent;
+            button.textContent = 'Copied!';
+            setTimeout(() => button.textContent = originalText, 2000);
+        })
+        .catch(err => console.error('Copy failed', err));
+}
+</script>
+{% endblock %}
